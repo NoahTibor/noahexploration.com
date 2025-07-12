@@ -1,4 +1,3 @@
- <script>
         // Mobile Navigation Toggle
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
@@ -81,4 +80,3 @@
         window.addEventListener('scroll', animateOnScroll);
         // Initial check on page load
         window.addEventListener('load', animateOnScroll);
-    </script>
