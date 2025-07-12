@@ -3,106 +3,1139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noah Tibor Thirion - Mechanical Engineer</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Noah Tibor Thirion | Mechanical Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary: #00bcd4;
+            --accent: #ff4081;
+            --light: #f5f9ff;
+            --dark: #121212;
+            --text: #333;
+            --text-light: #fff;
+            --gray: #78909c;
+            --section-padding: 100px;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(26, 115, 232, 0.05) 0%, rgba(255, 255, 255, 0) 20%),
+                        radial-gradient(circle at 90% 80%, rgba(0, 188, 212, 0.05) 0%, rgba(255, 255, 255, 0) 20%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4, h5 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        h1 {
+            font-size: 4rem;
+            letter-spacing: -1.5px;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-center h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: var(--text-light);
+            margin: 6px 0;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0 1.2rem;
+        }
+
+        .nav-item a {
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-item a:hover::after,
+        .nav-item a.active::after {
+            width: 100%;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            opacity: 0.15;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-highlight {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--text-light);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(0, 188, 212, 0.35);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 188, 212, 0.5);
+        }
+
+        /* ===== SECTIONS COMMON STYLES ===== */
+        section {
+            padding: var(--section-padding) 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            background-color: var(--light);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            height: 550px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-content h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(26, 115, 232, 0.3);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background: var(--secondary);
+        }
+
+        /* ===== EXPERIENCE SECTION ===== */
+        .experience-section {
+            background-color: #fff;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            top: 32px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -13px;
+        }
+
+        /* ===== MOTIVATION SECTION ===== */
+        .motivation-section {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .motivation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+        }
+
+        .quote {
+            font-size: 1.8rem;
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            position: relative;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .quote::before, .quote::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--secondary);
+            opacity: 0.5;
+            position: absolute;
+        }
+
+        .quote::before {
+            top: -30px;
+            left: 0;
+        }
+
+        .quote::after {
+            bottom: -60px;
+            right: 0;
+        }
+
+        .goals-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .goal-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .goal-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .goal-card h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== PROJECTS SECTION ===== */
+        .projects-section {
+            background-color: var(--light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: rgba(26, 115, 232, 0.1);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .project-link::after {
+            content: '→';
+            margin-left: 8px;
+            transition: var(--transition);
+        }
+
+        .project-link:hover::after {
+            margin-left: 15px;
+        }
+
+        /* ===== DOCUMENTS SECTION ===== */
+        .documents-section {
+            background-color: #fff;
+        }
+
+        .documents-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .document-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .document-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(26, 115, 232, 0.15);
+        }
+
+        .document-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .document-button {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .document-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* ===== LANGUAGES SECTION ===== */
+        .languages-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--text-light);
+        }
+
+        .languages-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .language-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            width: 250px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .language-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .language-flag {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .language-progress {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .language-progress-bar {
+            height: 100%;
+            background: var(--secondary);
+            border-radius: 4px;
+        }
+
+        .language-level {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--dark);
+            color: var(--text-light);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .footer-text {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.8;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-social a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1100px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 18px;
+            }
+
+            .timeline-item:nth-child(even)::after {
+                left: 18px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            :root {
+                --section-padding: 80px;
+            }
+
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 70px;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--primary-dark);
+                flex-direction: column;
+                padding: 100px 2rem 2rem;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.15);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-item {
+                margin: 1rem 0;
+            }
+
+            .hero-content {
+                padding: 8rem 2rem 4rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            :root {
+                --section-padding: 60px;
+            }
+
+            h1 {
+                font-size: 2.4rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                min-height: 90vh;
+            }
+
+            .quote {
+                font-size: 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .language-card {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header with Navigation -->
+    <!-- Header & Navigation -->
     <header>
         <div class="header-container">
-            <button class="hamburger" aria-label="Menu">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
-            <h1 class="logo">NOAH TIBOR THIRION</h1>
-        </div>
-        <nav class="navbar">
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#home">Home</a></li>
-                <li class="nav-item"><a href="#about">About</a></li>
+            <div class="logo">NOAH TIBOR THIRION</div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="#about" class="active">About</a></li>
+                <li class="nav-item"><a href="#experience">Experience</a></li>
+                <li class="nav-item"><a href="#motivation">Motivation</a></li>
                 <li class="nav-item"><a href="#projects">Projects</a></li>
-                <li class="nav-item"><a href="#academics">Academics</a></li>
+                <li class="nav-item"><a href="#documents">Documents</a></li>
+                <li class="nav-item"><a href="#languages">Languages</a></li>
                 <li class="nav-item"><a href="#contact">Contact</a></li>
             </ul>
-        </nav>
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Banner -->
-        <section id="home" class="hero-banner">
-            <div class="hero-content">
-                <h2>Mechanical Engineering Student</h2>
-                <p>Seeking Year in Industry Placement</p>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Mechanical Engineering Student</h1>
+            <p class="hero-subtitle">Passionate about aerospace innovation and sustainable engineering solutions</p>
+            <p>Seeking a Year in Industry placement to apply theoretical knowledge and gain practical experience in mechanical systems design and development.</p>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
 
-        <!-- About Section -->
-        <section id="about" class="about-section">
-            <div class="container">
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-container">
                 <div class="about-image">
-                    <img src="https://via.placeholder.com/400x500" alt="Noah Tibor Thirion">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Noah Tibor Thirion">
                 </div>
-                <div class="about-text">
-                    <h2>About Me</h2>
-                    <p>Born in Uccle, Belgium, on 18 March 2006, I moved to the UK in 2022 to complete my A-Levels. Currently entering my second year of Mechanical Engineering studies seeking a Year in Industry placement.</p>
+                <div class="about-content">
+                    <h3>Mechanical Engineering Student</h3>
+                    <p>Born in Uccle, Belgium, on 18 March 2006, I moved to the UK in 2022 to complete my A-Levels. Currently entering my second year of Mechanical Engineering studies at Newcastle University, seeking a Year in Industry placement.</p>
+                    <p>My passion lies in aerospace engineering and sustainable technology solutions. I believe in applying engineering principles to create innovative solutions for real-world challenges.</p>
+                    <p>With a strong foundation in mathematics and physics, I'm eager to contribute to cutting-edge engineering projects while continuing to expand my technical expertise.</p>
+                    
+                    <div class="social-icons">
+                        <a href="https://github.com/NoahTibor" class="social-icon" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.instagram.com/noahtiborrr/" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/noah-tibor-thirion-795046266/" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="projects-section">
-            <div class="section-header">
-                <h2>Engineering Projects</h2>
-                <div class="divider"></div>
+    <!-- Experience Section -->
+    <section class="experience-section" id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Experience & Education</h2>
             </div>
-            <div class="project-cards">
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2023 - Present</span>
+                        <h3>BEng Mechanical Engineering</h3>
+                        <p>Newcastle University, UK</p>
+                        <p>Current GPA: 72.1% (UK 1:1 equivalent)</p>
+                        <p>Top marks in Mathematics (93%)</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Summer 2023</span>
+                        <h3>International Exchange Program</h3>
+                        <p>Hong Kong University of Science and Technology</p>
+                        <p>Completed intensive courses in aerospace/mechanical engineering and advanced mathematics</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022 - 2023</span>
+                        <h3>Rocketry Society</h3>
+                        <p>Lead Project Engineer</p>
+                        <p>Designed, built and launched team rocket. Developed functional wind tunnel prototype for aerodynamic testing.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2020 - 2022</span>
+                        <h3>A-Levels</h3>
+                        <p>Mathematics, Physics, Chemistry, French</p>
+                        <p>Completed with distinction after moving to the UK from Belgium</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motivation Section -->
+    <section class="motivation-section" id="motivation">
+        <div class="container">
+            <div class="section-title">
+                <h2>Motivation & Goals</h2>
+            </div>
+            
+            <div class="quote">
+                Engineering is not merely knowing and being knowledgeable, like a walking encyclopedia; engineering is not merely analysis; engineering is not merely the possession of the capacity to get elegant solutions to non-existent engineering problems; engineering is practicing the art of the organized forcing of technological change.
+            </div>
+            
+            <div class="goals-container">
+                <div class="goal-card">
+                    <h3>Professional Goals</h3>
+                    <p>To become a leading aerospace engineer specializing in sustainable propulsion systems and contribute to the decarbonization of aviation.</p>
+                    <p>Develop innovative solutions that bridge the gap between theoretical research and practical applications in the aerospace industry.</p>
+                </div>
+                
+                <div class="goal-card">
+                    <h3>Year in Industry</h3>
+                    <p>Seeking a challenging placement where I can apply my academic knowledge to real-world engineering problems.</p>
+                    <p>Eager to develop practical skills in mechanical systems design, testing, and optimization while contributing to meaningful projects.</p>
+                </div>
+                
+                <div class="goal-card">
+                    <h3>Long-Term Vision</h3>
+                    <p>Establish a research foundation focused on sustainable aerospace technologies.</p>
+                    <p>Mentor the next generation of engineers and promote STEM education internationally.</p>
+                    <p>Contribute to open-source engineering projects that solve global challenges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projects & Case Studies</h2>
+            </div>
+            
+            <div class="projects-grid">
                 <div class="project-card">
-                    <h3>Rocketry Society</h3>
-                    <p>Designed, built and launched team rocket. Developed functional wind tunnel prototype (testing 2025).</p>
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Rocketry Project">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Aerospace Engineering</span>
+                        <h3>University Rocketry Society</h3>
+                        <p>Led a team of 8 students in designing, building, and launching a high-powered rocket. Developed computational models for trajectory prediction and structural analysis.</p>
+                        <a href="#" class="project-link">View Case Study</a>
+                    </div>
                 </div>
+                
                 <div class="project-card">
-                    <h3>HKUST Exchange Program</h3>
-                    <p>Completed intensive courses in aerospace/mechanical engineering and advanced mathematics at Hong Kong University of Science and Technology.</p>
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Wind Tunnel">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Fluid Dynamics</span>
+                        <h3>Wind Tunnel Prototype</h3>
+                        <p>Designed and built a functional wind tunnel prototype for aerodynamic testing. The project involved CAD modeling, 3D printing, sensor integration, and data acquisition system development.</p>
+                        <a href="#" class="project-link">View Case Study</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="HKUST Exchange">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">International Study</span>
+                        <h3>HKUST Engineering Exchange</h3>
+                        <p>Participated in a 2-month intensive program at Hong Kong University of Science and Technology. Focused on advanced aerospace concepts, computational fluid dynamics, and materials science.</p>
+                        <a href="#" class="project-link">View Experience</a>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Academics Section -->
-        <section id="academics" class="academics-section">
-            <div class="section-header">
-                <h2>Academic Achievements</h2>
-                <div class="divider"></div>
+    <!-- Documents Section -->
+    <section class="documents-section" id="documents">
+        <div class="container">
+            <div class="section-title">
+                <h2>Documents & References</h2>
             </div>
-            <div class="academic-cards">
-                <div class="academic-card">
-                    <h3>Mechanical Engineering</h3>
-                    <p>Current GPA: 72.1% (UK 1:1 equivalent)</p>
-                    <p>Top marks in Mathematics (93%)</p>
+            
+            <div class="documents-container">
+                <div class="document-card">
+                    <div class="document-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Curriculum Vitae</h3>
+                    <p>Detailed professional CV highlighting my education, skills, projects, and achievements in mechanical engineering.</p>
+                    <a href="#" class="document-button">Download CV</a>
                 </div>
-                <div class="academic-card">
-                    <h3>Technical Skills</h3>
-                    <p>CAD (SolidWorks), MATLAB, Python, Engineering Mathematics</p>
+                
+                <div class="document-card">
+                    <div class="document-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <h3>Reference Letters</h3>
+                    <p>Academic and professional references from university professors and project supervisors.</p>
+                    <a href="#" class="document-button">View References</a>
+                </div>
+                
+                <div class="document-card">
+                    <div class="document-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Academic Transcripts</h3>
+                    <p>Official university transcripts demonstrating academic performance and course achievements.</p>
+                    <a href="#" class="document-button">View Transcripts</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <div class="section-header">
-                <h2>Get In Touch</h2>
-                <div class="divider"></div>
+    <!-- Languages Section -->
+    <section class="languages-section" id="languages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Language Skills</h2>
             </div>
-            <div class="social-links">
+            
+            <div class="languages-container">
+                <div class="language-card">
+                    <div class="language-flag">🇫🇷</div>
+                    <h3>French</h3>
+                    <p>Native proficiency</p>
+                    <div class="language-progress">
+                        <div class="language-progress-bar" style="width: 100%"></div>
+                    </div>
+                    <div class="language-level">Native Speaker</div>
+                </div>
+                
+                <div class="language-card">
+                    <div class="language-flag">🇬🇧</div>
+                    <h3>English</h3>
+                    <p>Professional proficiency</p>
+                    <div class="language-progress">
+                        <div class="language-progress-bar" style="width: 95%"></div>
+                    </div>
+                    <div class="language-level">Fluent</div>
+                </div>
+                
+                <div class="language-card">
+                    <div class="language-flag">🇳🇱</div>
+                    <h3>Dutch</h3>
+                    <p>Intermediate level</p>
+                    <div class="language-progress">
+                        <div class="language-progress-bar" style="width: 65%"></div>
+                    </div>
+                    <div class="language-level">Intermediate</div>
+                </div>
+                
+                <div class="language-card">
+                    <div class="language-flag">🇹🇭</div>
+                    <h3>Thai</h3>
+                    <p>Currently learning</p>
+                    <div class="language-progress">
+                        <div class="language-progress-bar" style="width: 20%"></div>
+                    </div>
+                    <div class="language-level">Beginner</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-logo">NOAH TIBOR THIRION</div>
+            <p class="footer-text">Mechanical Engineering student passionate about aerospace innovation and sustainable technology solutions. Seeking a challenging Year in Industry placement.</p>
+            
+            <div class="footer-social">
                 <a href="https://github.com/NoahTibor" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 <a href="https://www.instagram.com/noahtiborrr/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/noah-tibor-thirion-795046266/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
-        </section>
-    </main>
-
-    <script src="script.js"></script>
+            
+            <div class="copyright">
+                © 2023 Noah Tibor Thirion. All rights reserved.
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
